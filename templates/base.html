@@ -1,0 +1,234 @@
+{% load static %} {% load cart_template_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>VETEMENT clothing shop </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .carousel {
+            height: 60vh;
+        }
+
+        @media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+                height: 100vh;
+            }
+        }
+    </style>
+
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+</head>
+
+<body>
+    <main>
+        <div class="container">
+
+            <div class="pt-5 mt-4">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success {% if message.tags %} {{ message.tags }} {% endif %}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <!-- Navbar -->
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+                <div class="container">
+                    <!-- Brand -->
+                    <a class="navbar-brand waves-effect" href="{% url 'core:home' %}">
+                        <strong class="blue-text">VETMENTS</strong>
+                    </a>
+                    <!-- Collapse -->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <!-- Links -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Left -->
+                        <ul class="navbar-nav mr-auto">
+                        </ul>
+
+                        <!-- Right -->
+                        <ul class="navbar-nav nav-flex-icons">
+                            {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a href="{% url 'core:order-summary' %}" class="nav-link waves-effect">
+                                    <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'account_logout' %}" class="nav-link waves-effect">
+                                    <span class="clearfix d-none d-sm-inline-block"> Logout </span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a href="{% url 'account_login' %}" class="nav-link waves-effect" target="_blank">
+                                    Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'account_signup' %}" class="nav-link waves-effect" target="_blank">
+                                    Sign up
+                                </a>
+                            </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a href="https://www.facebook.com/" class="nav-link waves-effect" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://twitter.com/" class="nav-link waves-effect" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+            </nav>
+            <!-- Navbar -->
+
+            <!-- Content -->
+            <div class="container pt-4">
+                {% block content  %}
+                {% endblock content %}
+
+                {% block extra_body %}
+                {% endblock %}
+            </div>
+        </div>
+    </main>
+    <!--Footer-->
+    <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+        <hr class="my-4">
+        <!-- Social icons -->
+        <div class="pt-4">
+            <div class="pb-4">
+                <a href="" target="_blank">
+                    <i class="fab fa-facebook-f mr-3"></i>
+                </a>
+
+                <a href=" target=" _blank">
+                    <i class="fab fa-twitter mr-3"></i>
+                </a>
+
+                <a href=" target=" _blank">
+                    <i class="fab fa-youtube mr-3"></i>
+                </a>
+
+                <a href="" target="_blank">
+                    <i class="fab fa-google-plus-g mr-3"></i>
+                </a>
+
+                <a href="" target="_blank">
+                    <i class="fab fa-dribbble mr-3"></i>
+                </a>
+
+                <a href="" target="_blank">
+                    <i class="fab fa-pinterest mr-3"></i>
+                </a>
+
+                <a href="" target="_blank">
+                    <i class="fab fa-github mr-3"></i>
+                </a>
+
+                <a href="" target="_blank">
+                    <i class="fab fa-codepen mr-3"></i>
+                </a>
+
+                <a href="{% url 'core:request-refund' %}">
+                    Refund
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+
+    <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();
+    </script>
+
+    <script>
+        var hideable_shipping_form = $('.hideable_shipping_form');
+        var hideable_billing_form = $('.hideable_billing_form');
+        var hideable_same_billing = $('.hideable_same_billing_address');
+        var hideable_default_shipping = $('.hideable_default_shipping');
+
+        var use_default_shipping = document.querySelector("input[name=use_default_shipping]");
+        var use_default_billing = document.querySelector("input[name=use-default-billing]");
+        var same_billing_address = document.querySelector("input[name=same_billing_address]");
+
+        use_default_shipping.addEventListener('change', function () {
+            if (this.checked) {
+                hideable_shipping_form.hide();
+
+            } else {
+                hideable_shipping_form.show();
+
+            }
+        })
+
+        same_billing_address.addEventListener('change', function () {
+            if (this.checked) {
+                hideable_billing_form.hide();
+
+            } else {
+                hideable_billing_form.show();
+
+            }
+        })
+
+        use_default_billing.addEventListener('change', function () {
+            if (this.checked) {
+                hideable_billing_form.hide();
+            } else {
+                hideable_billing_form.show();
+            }
+        })
+
+    </script>
+</body>
+
+</html>
