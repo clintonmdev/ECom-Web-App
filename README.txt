@@ -1,3 +1,17 @@
+# E-Commerce_Django
+This is a retail website made using Django Web Framework. For this project, I have implemented the basic functionalities most e-commerce websites use.
+Here you can find the following features :
+
+Authentication
+| Forms
+| Cart
+| Contact (Refund)
+| Stripe Connection
+| Bootstrap
+| API
+| Test
+
+
 
 VETEMENT E-Commerce Website.
 ============================
