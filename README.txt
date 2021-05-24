@@ -17,7 +17,7 @@ Authentication
 VETEMENT E-Commerce Website.
 ============================
 
-VETEMENT is an e-commerce website made with the Django Web Framework which includes the basics features commonly used in other similar web app.
+VETEMENT is an e-commerce website made with the Django Web Framework which includes the basics features commonly used in other similar web app
 
 
 Quick start
